@@ -6,6 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: keygen-admin
+    volumes:
+      - .:/usr/app/
+    stdin_open: true
+    tty: true
     environment:
       - NODE_ENV=production
       - PORT=3010

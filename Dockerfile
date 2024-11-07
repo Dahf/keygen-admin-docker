@@ -1,17 +1,17 @@
 # Verwende ein Node.js-Image
 FROM node:18
 
-# Installiere PM2 global
-RUN npm install -g pm2
-
 # Arbeitsverzeichnis im Container setzen
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Kopiere package.json und package-lock.json
 COPY package*.json ./
 
 # Installiere Abhängigkeiten
 RUN npm install
+
+# Installiere PM2 global
+RUN npm install -g pm2
 
 # Kopiere den restlichen Code ins Arbeitsverzeichnis
 COPY . .
@@ -23,4 +23,4 @@ RUN npm run build:css
 EXPOSE 3010
 
 # Starte den Server mit PM2 im Cluster-Modus
-CMD ["pm2-runtime", "server.js", "--name", "keygen-admin", "--watch"]
+CMD ["npm", "run", "dev"]
