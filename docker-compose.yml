@@ -8,6 +8,8 @@ services:
     container_name: keygen-admin
     volumes:
       - .:/usr/app/
+    env_file:
+      - stack.env
     stdin_open: true
     tty: true
     environment:
