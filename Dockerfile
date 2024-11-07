@@ -23,4 +23,4 @@ RUN npm run build:css
 EXPOSE 3010
 
 # Starte den Server mit PM2 im Cluster-Modus
-CMD ["pm2-runtime", "src/index.js", "--name", "keygen-admin", "--watch"]
+CMD ["pm2-runtime", "server.js", "--name", "keygen-admin", "--watch"]
