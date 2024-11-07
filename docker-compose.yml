@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  keygen-admin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: keygen-admin
+    environment:
+      - NODE_ENV=production
+      - PORT=3010
+      - DEBUG=keygen-admin:*
+    volumes:
+      - .:/app
+    networks:
+      - traefik_proxy-net
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.keygenui.entrypoints=web,websecure
+      - traefik.http.services.keygenui.loadbalancer.server.port=3010
+      - traefik.http.routers.keygenui.rule=Host(`keygenui.silasbeckmann.de`)
+      - traefik.http.routers.keygenui.tls=true
+      - traefik.docker.network=traefik_proxy-net
+
+networks:
+  traefik_proxy-net:
+    external: true
