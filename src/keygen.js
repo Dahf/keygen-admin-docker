@@ -1,4 +1,4 @@
-import Keygen from "@themaximalist/keygen.js";
+import Keygen from "./keygen_api.js";
 
 const keygen = new Keygen({
   account_id: process.env.KEYGEN_ACCOUNT_ID,
